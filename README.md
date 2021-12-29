@@ -8,7 +8,7 @@ using tensorflow's official tflite_runtime package, small env under 25mb
 
 Part 1. Use a Python Notebook (or other method) to create a model using Tensorflow and Keras and which is then saved as a model.ftlite file.
 
-(link to sample Notebook) 
+See .ipynb notebook file.
 
 Part 2. Store the model in AWS-S3 and run the model using an AWS-Lambda-Function using a python env containing tflight_runtime. 
 - upload your model.tflite into AWS-S3
@@ -16,7 +16,9 @@ Part 2. Store the model in AWS-S3 and run the model using an AWS-Lambda-Function
 - (optionally) make an API-Endpoint with AWS API-Gateway for the AWS-Lambda-function
 - (optionally) connect other AWS-lambda-functions or services to your AWS-Lambda-function
 
-(link to sample env code)
+see:
+- function.zip is the env to upload to AWS as is
+- lambda_function.py is the specific code to customize if needed
 
 
 # Instructions:
