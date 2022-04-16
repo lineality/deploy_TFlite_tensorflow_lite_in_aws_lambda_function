@@ -5,6 +5,9 @@
 
 ## Create & Deploy Model in Two Project-Parts:
 
+#### Summary: Here is a thrifty, cheap, and relatively quick way to deploy AI/ML models in AWS. You can use google-colab to make your model, and you can deploy on AWS using cheap or free-tier resources: AWS-S3, AWS-Lambda-Functions, AWS-api-gateway endpoint. No docker needed, no cloud9, no sagemaker, no EC2, etc. TFlite-runtime is a very tiny way to deploy full models developed with Tensorflow and Keras tools on "Edge" (resource thin) or in AWS-lambda-functions (as described here). Overall there are two parts to the process. One: train your model and save it for TFlite. Two: Deploy the TFlite model in AWS. 
+
+
 #### Making a Tensorflow model and deploying using an AWS-Lambda-Function can be done in the follow two steps:
 
 Part 1. Use a Python Notebook (or other method) to create a model using Tensorflow and Keras and which is then saved as a model.ftlite file. The full Tensorflow and Keras and huge, can be difficult to install (so use colab...), and are for developers (not production deployment)
