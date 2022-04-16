@@ -1,4 +1,4 @@
-# deploy_TFlite_tensorflow_lite_in_aws_lambda_function
+# deploy_TFlite_tensorflow_lite_in_aws_lambda_function_plus_CV_computer_vision
 - using tensorflow's official tflite_runtime package 
 - small env under 25mb (easy to put in AWS and share with github)
 
