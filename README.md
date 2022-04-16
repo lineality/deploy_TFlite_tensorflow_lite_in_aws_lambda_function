@@ -91,14 +91,12 @@ Sample input:
 }
 ```
 
-## Step 5: Yet another Python Environment -> Test your AWS deployment function code
+5: Yet another Python Environment -> Test your AWS deployment function code
 
 To test out and or develope your deployment TFlite function details, you may want to create a 3rd python environment (unless you want to test directly in AWS, but that can be time consuming due to vague, erroneous, and absent error messages). 
 
-To make a local python environment to test or deploy: 
-```
-$ pip3 install --extra-index-url https://google-coral.github.io/py-repo/ tflite_runtime
-```
+
+# To make a local python environment to test or deploy: 
 
 Files for testing are provided here:
 
@@ -109,6 +107,47 @@ re-Zip instructions are here, and here:
 https://github.com/lineality/notes_on_zip 
 
 https://github.com/lineality/linux_make_split_zip_archive_multiple_small_parts_for_AWS 
+
+## Instructions:
+
+
+instruction code to create python env (for uploading to AWS):
+only tflite_runtime is needed, numpy is included with tflite
+
+```
+$ python3 -m venv env; source env/bin/activate
+
+$ pip3 install --upgrade pip
+```
+
+#### **version 2.8 may cause AWS errors, try TFlite-runtime v2.7**
+#### use: pip install tflite-runtime==2.7.0
+```
+$ pip3 install pillow
+
+$ pip3 freeze > requirements.txt
+```
+
+####  Drill down to -> env/lib/python3.8/sitepackages
+#### this makes the main zip file
+```
+$ zip -r9 ../../../../function.zip .
+```
+
+#### Make a lambda_function.py file, later update this with real code
+```
+$ touch lambda_function.py
+```
+
+#### In project-root folder: add .py file to your zip file
+```
+$ zip -g ./function.zip -r lambda_function.py
+```
+
+#### To update the .py file (depending on OS) edit file in the zipped archive or re-add a new .py to replace the old by repeating the same step from above
+```
+$ zip -g ./function.zip -r lambda_function.py
+```
 
 
 
