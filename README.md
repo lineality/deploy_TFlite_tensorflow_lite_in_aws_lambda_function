@@ -108,8 +108,32 @@ https://github.com/lineality/notes_on_zip
 
 https://github.com/lineality/linux_make_split_zip_archive_multiple_small_parts_for_AWS 
 
-## Instructions:
 
+# CV Computer Vision:
+For a computer vision project, the process is very similar with a few notable differences.
+1. You need to add Pillow/PIL (Python Image Library) to your env, which is only adds about 7mb to the compressed size. (Which is lucky, because you cannot go over the arbitrary AWS size limit or this method is impossible.) 
+2. You need to account for the 'input' being a picture in S3, so you have two access-S3 file events.
+3. The output can take various forms of your choice. If the model is a binary classification between two items, you can:
+1. Simply print the output (a very odd form of a list with a double-space separator)
+2. Translate the probability numbers into the names of those classes
+3. You can give a single prediction: 1 vs 0 chance of one class or the other.
+4. Or you can return a probability number of one or
+5. both classes. 
+(Many more design choices here, compared with a continuous-number prediction.)
+
+## Be careful of library and package version incompatibility. 
+Because AWS error messages are...garbage...it can take hours or days or longer to find out what is breaking a process. I strongly recommend going step by agonizing-step and testing in AWS with every step. Every time you add a python package, start with a minimal lambda-function and import that package. This way you can catch when something breaks. E.g. TFlite-runtime v28 breaks AWS (for whatever reason), but v27 is just fine. 
+
+## Don't Re-use Disposable Parts:
+In AWS-land, most things are brittle and need to be remade from scratch (even S3 folder paths...amazingly). Don't re-use a lambda function after re-building it several hundred times getting it to work: make a fresh one. Don't re-use a python-env: make a fresh one. Problems very often come from parts being broken and needing to start from a fresh part. 
+
+## Save old versions of everything, and clearly mark what builds work.
+- use whatever versioning system you want, but save save save, so when you need to go back then you can do so.
+- "Coding is about communicating": Document everything you do clearly both for other people and for 'future you.' 
+
+# Env Creation Instructions:
+
+Working env files are included in this repo, but eventually you will want to make your own. After doing so a few times, the process becomes rather quick. 
 
 instruction code to create python env (for uploading to AWS):
 only tflite_runtime is needed, numpy is included with tflite
